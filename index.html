@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Паркинг на Базовской</title>
+<meta name="description" content="Жители ЖК «На Базовской» просят город рассмотреть капитальный паркинг рядом с домом под управлением Московского паркинга. Пройдите опрос и отправьте обращение.">
+<meta property="og:title" content="Паркинг для ЖК «На Базовской»">
+<meta property="og:description" content="Мест для машин не хватает. Пройдите опрос до 25 ноября и отправьте обращение в Дептранс от своего имени.">
+<meta property="og:image" content="assets/parking-photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Дизайн-система «Фомкин · Активизм» */
+  :root {
+    --bg-primary: #f5f5f4; --bg-secondary: #ffffff; --bg-tertiary: #ededed; --bg-graphite: #1a1a1a;
+    --card-bg: rgba(255,255,255,.7); --card-border: rgba(0,0,0,.06); --card-hover: rgba(255,255,255,.95);
+    --text-primary: #0a0a0a; --text-secondary: #4a4a4a; --text-muted: #8a8a8a;
+    --accent-red: #be1e2d; --accent-red-hover: #9e1825; --accent-red-soft: rgba(190,30,45,.08);
+    --accent-blue: #1e5aa8; --accent-blue-hover: #174a8f; --accent-blue-soft: rgba(30,90,168,.08);
+    --pill-bg: rgba(0,0,0,.06);
+    --radius: 20px; --radius-16: 16px; --radius-12: 12px; --radius-pill: 100px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.04); --shadow-lg: 0 12px 40px rgba(0,0,0,.08);
+    --shadow-glass: 0 8px 32px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.6);
+    --shadow-accent: 0 2px 8px rgba(190,30,45,.2); --shadow-accent-hover: 0 6px 20px rgba(190,30,45,.28);
+    --ease: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-primary); color: var(--text-primary);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(circle at 0% 0%, rgba(190,30,45,.04), transparent 45%),
+                radial-gradient(circle at 100% 100%, rgba(30,90,168,.03), transparent 45%); }
+  a { color: var(--accent-blue); }
+  :focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 768px) { .wrap { padding: 0 40px; } }
+
+  /* шапка-капсула */
+  .top { position: sticky; top: 12px; z-index: 10; padding: 0 12px; }
+  .bar { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--card-bg); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--card-border); border-radius: var(--radius-pill); box-shadow: var(--shadow-glass); padding: 8px 8px 8px 20px; }
+  .brand { font-weight: 700; font-size: 17px; letter-spacing: -.5px; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+  .brand span { color: var(--accent-red); }
+  .bar nav { display: none; gap: 4px; }
+  .bar nav a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; padding: 8px 14px; border-radius: var(--radius-pill); transition: var(--ease); }
+  .bar nav a:hover { background: rgba(0,0,0,.04); color: var(--text-primary); }
+  @media (min-width: 900px) { .bar nav { display: flex; } }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 26px;
+    border-radius: var(--radius-pill); font: 600 14px/1 inherit; font-family: inherit; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: var(--ease); }
+  .btn.red { background: var(--accent-red); color: #fff; box-shadow: var(--shadow-accent); }
+  .btn.red:hover { background: var(--accent-red-hover); box-shadow: var(--shadow-accent-hover); transform: translateY(-2px); }
+  .btn.ghost { background: var(--card-bg); border-color: var(--card-border); color: var(--text-primary); backdrop-filter: blur(10px); }
+  .btn.ghost:hover { background: var(--bg-secondary); }
+  .btn.sm { min-height: 40px; padding: 0 18px; font-size: 13px; }
+
+  .label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent-blue); }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-red); margin-bottom: 12px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-pill);
+    background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(10px); }
+  .badge.blue { background: var(--accent-blue-soft); border-color: transparent; color: var(--accent-blue); font-weight: 700; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; }
+
+  /* герой */
+  .hero { padding: 24px 0 0; }
+  .hero-cover { position: relative; overflow: hidden; border-radius: var(--radius); color: #fff; min-height: 560px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 120px 24px 28px; box-shadow: var(--shadow-lg);
+    background: linear-gradient(180deg, rgba(10,10,10,.25) 0%, rgba(10,10,10,.55) 45%, rgba(10,10,10,.85) 100%), url("assets/parking-photo.jpg") center/cover no-repeat #1a1a1a; }
+  @media (min-width: 1024px) { .hero-cover { min-height: 640px; padding: 140px 56px 48px;
+    background: linear-gradient(90deg, rgba(10,10,10,.85) 0%, rgba(10,10,10,.6) 50%, rgba(10,10,10,.15) 100%), url("assets/parking-photo.jpg") center/cover no-repeat #1a1a1a; } }
+  .hero-cover .inner { max-width: 680px; }
+  h1 { font-size: 34px; line-height: 1.08; font-weight: 800; letter-spacing: -1.2px; margin-top: 20px; }
+  @media (min-width: 768px) { h1 { font-size: 58px; letter-spacing: -2px; } }
+  .lead { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,.88); margin-top: 20px; max-width: 600px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .hero-cover .badge { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.22); color: #fff; }
+  .hero-cover .btn.ghost { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.35); color: #fff; }
+  .hero-cover .btn.ghost:hover { background: rgba(255,255,255,.24); }
+  .hero-cap { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 32px; }
+
+  /* секции */
+  section { padding: 60px 0; }
+  @media (min-width: 768px) { section { padding: 100px 0; } }
+  h2 { font-size: 30px; line-height: 1.15; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; max-width: 820px; }
+  @media (min-width: 768px) { h2 { font-size: 44px; letter-spacing: -1.5px; } }
+  .text { max-width: 760px; font-size: 17px; line-height: 1.7; color: var(--text-secondary); }
+  .text p + p { margin-top: 14px; }
+
+  .grid { display: grid; gap: 24px; margin-top: 48px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow-sm); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); transition: var(--ease); }
+  .card:hover { background: var(--card-hover); box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: rgba(30,90,168,.25); }
+  .card h3 { font-size: 20px; font-weight: 700; letter-spacing: -.5px; line-height: 1.3; margin-bottom: 10px; }
+  .card p { color: var(--text-secondary); }
+  .ico { width: 48px; height: 48px; border-radius: var(--radius-12); background: var(--accent-red-soft); color: var(--accent-red);
+    display: grid; place-items: center; margin-bottom: 20px; }
+  .ico svg { width: 26px; height: 26px; }
+  .stat { border-radius: var(--radius-16); padding: 28px; }
+  .num { font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--accent-red); line-height: 1.1; }
+  .stat p { font-size: 14px; font-weight: 500; margin-top: 8px; }
+
+  .dark { background: var(--bg-graphite); color: #fff; border-radius: var(--radius); padding: 32px; margin-top: 32px; max-width: 820px; }
+  .dark .label { color: #9fc0ec; }
+  .dark p { color: rgba(255,255,255,.85); margin: 0; font-size: 16px; }
+  .fine { font-size: 14px; color: var(--text-secondary); margin-top: 24px; max-width: 820px; }
+
+  .split { display: grid; gap: 32px; margin-top: 48px; align-items: start; }
+  @media (min-width: 1024px) { .split { grid-template-columns: 1.2fr 1fr; gap: 56px; } }
+  .map { border-radius: var(--radius); overflow: hidden; background: var(--bg-secondary); box-shadow: var(--shadow-lg); }
+  .map img { display: block; width: 100%; height: auto; }
+  #plotmap { height: 420px; background: #efeeea; }
+  .leaflet-tooltip.plot-label { background: #be1e2d; color: #fff; border: 0; border-radius: 100px; font: 700 12px Inter, sans-serif; padding: 4px 10px; box-shadow: none; }
+  .leaflet-tooltip.plot-label::before { display: none; }
+  #plotmap > img { height: 100%; object-fit: cover; }
+  #plotmap .leaflet-control-attribution { font-size: 10px; }
+  @media (max-width: 767px) { #plotmap { height: 340px; } }
+  .map figcaption { font-size: 13px; color: var(--text-secondary); padding: 12px 16px; }
+
+  .steps-flow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; font-weight: 700; font-size: 15px; }
+  .steps-flow i { font-style: normal; color: var(--text-muted); }
+  .act { display: grid; gap: 24px; margin-top: 48px; }
+  @media (min-width: 1024px) { .act { grid-template-columns: 1fr 1fr; } }
+  .stepn { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-red-soft); color: var(--accent-red); font-weight: 800; display: grid; place-items: center; margin-bottom: 20px; }
+  .qr { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: 24px; }
+  .qr img { width: 132px; height: 132px; background: #fff; border-radius: var(--radius-12); padding: 8px; border: 1px solid var(--card-border); }
+
+  details { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-16); margin-top: 12px; backdrop-filter: blur(20px); }
+  summary { cursor: pointer; padding: 20px 24px; font-weight: 700; font-size: 16px; letter-spacing: -.3px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--pill-bg); display: grid; place-items: center; font-weight: 500; font-size: 18px; }
+  details[open] summary::after { content: "–"; }
+  details > div { padding: 0 24px 24px; color: var(--text-secondary); }
+  details ol { padding-left: 20px; display: grid; gap: 8px; }
+  .appeal { white-space: pre-wrap; font-family: "Times New Roman", Times, serif; font-size: 16px; line-height: 1.45; color: var(--text-primary);
+    background: var(--bg-secondary); border: 1px solid var(--card-border); border-radius: var(--radius-12); padding: 20px; max-height: 420px; overflow: auto; margin-top: 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
+  .copied { color: var(--accent-blue); font-weight: 700; font-size: 13px; }
+
+  /* контакты */
+  .contacts { display: grid; gap: 24px; margin-top: 48px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .contact { display: flex; gap: 16px; align-items: flex-start; text-decoration: none; color: inherit; }
+  .contact .ico { margin: 0; flex: none; background: var(--accent-blue-soft); color: var(--accent-blue); }
+  .contact b { display: block; font-size: 16px; letter-spacing: -.3px; color: var(--text-primary); }
+  .contact span { color: var(--text-secondary); font-size: 14px; word-break: break-word; }
+  .todo { background: #fff3c4; color: #5c4400; border-radius: 4px; padding: 0 4px; }
+
+  footer { border-top: 1px solid var(--card-border); padding: 32px 0 48px; font-size: 14px; color: var(--text-secondary); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+<link rel="stylesheet" href="assets/leaflet/leaflet.css">
+</head>
+<body>
+
+<div class="top">
+  <header class="bar">
+    <a class="brand" href="#top">Паркинг <span>на Базовской</span></a>
+    <nav>
+      <a href="#problem">Проблема</a>
+      <a href="#numbers">Цифры</a>
+      <a href="#plot">Участок</a>
+      <a href="#act">Что сделать</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn red sm" href="https://forms.yandex.ru/u/6ae749b9902902dd98b405c6" target="_blank" rel="noopener">Пройти опрос</a>
+  </header>
+</div>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-cover" role="img" aria-label="Капитальный паркинг «Ховрино» на Зеленоградской улице">
+      <div class="inner">
+        <h1>Машин больше, чем мест. Нам нужен паркинг рядом с домом</h1>
+        <p class="lead">Жители ЖК «На Базовской» просят город рассмотреть капитальный паркинг рядом с комплексом, чтобы он работал под управлением Московского паркинга по городским тарифам.</p>
+        <div class="cta">
+          <a class="btn red" href="https://forms.yandex.ru/u/6ae749b9902902dd98b405c6" target="_blank" rel="noopener">Пройти опрос, 5 минут</a>
+          <a class="btn ghost" href="#appeal">Отправить обращение</a>
+        </div>
+        <div class="badges">
+          <span class="badge">Западное Дегунино</span>
+          <span class="badge">Опрос до 25 ноября</span>
+          <span class="badge">Анонимно</span>
+        </div>
+      </div>
+      <div class="hero-cap">На фото: капитальный паркинг «Ховрино» на Зеленоградской улице</div>
+    </div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <h2>Вечером машину негде оставить</h2>
+    <div class="text">
+      <p>В жилом комплексе 12 корпусов от 17 до 24 этажей. Капитального паркинга, многоуровневого или подземного, на территории нет: машины ставят только на наземных местах во дворах и вдоль улиц. Их не хватает, особенно вечером и ночью.</p>
+      <p>Поэтому машины стоят на газонах, тротуарах и во внутридворовых проездах. Пешеходам, родителям с колясками и пожилым людям трудно пройти, а скорая, пожарная и коммунальная техника может не проехать.</p>
+    </div>
+    <div class="dark">
+      <p>Во дворах могут ввести запрет остановки. Если это случится без альтернативы, мест станет ещё меньше. Поэтому решение нужно искать заранее.</p>
+    </div>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <h2>Сколько квартир и сколько нужно мест</h2>
+    <div class="grid">
+      <div class="card stat"><div class="num">2 537</div><p>квартир в 12 корпусах, по разрешениям на ввод в эксплуатацию</p></div>
+      <div class="card stat"><div class="num">≈ 2 030</div><p>машино-мест полагалось бы по нормам Москвы для новых домов: 0,8 места на квартиру (<a href="https://www.garant.ru/hotlaw/moscow/2199641/" target="_blank" rel="noopener">постановление Правительства Москвы от 5 августа 2026 г. № 2118-ПП</a>)</p></div>
+      <div class="card stat"><div class="num">≈ 400</div><p>мест может поместиться в пятиуровневом паркинге на свободном участке около 0,8 га рядом с комплексом</p></div>
+    </div>
+    <p class="fine">Нормы с 5 августа 2026 года установило <a href="https://www.garant.ru/hotlaw/moscow/2199641/" target="_blank" rel="noopener">постановление Правительства Москвы от 5 августа 2026 г. № 2118-ПП</a> «О внесении изменения в постановление Правительства Москвы от 23 декабря 2015 г. № 945-ПП». Они действуют для новых домов, для нашего комплекса это ориентир, а не требование. Сколько мест есть сейчас, мы считаем: обходим дворы и собираем данные. Точную нехватку опубликуем, когда посчитаем.</p>
+  </div>
+</section>
+
+<section id="proposal">
+  <div class="wrap">
+    <h2>Городской паркинг, где место можно арендовать</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Рядом с домом</h3><p>Капитальный паркинг на участке рядом с комплексом, в пешей доступности от подъездов.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div>
+        <h3>Под управлением Московского паркинга</h3><p>ГКУ «АМПП» паркинги не строит, а управляет ими. Мы просим, чтобы после строительства паркинг передали ему в управление.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></div>
+        <h3>По городским тарифам</h3><p>Рядом застройщик продаёт места в собственность за 3,5–5,3 млн рублей. Большинству соседей такая покупка не по силам, а место в городском паркинге можно арендовать.</p>
+      </div>
+    </div>
+    <p class="fine">Такие паркинги в городе уже есть, в том числе в САО. Например, многоуровневый перехватывающий паркинг «Ховрино» на Зеленоградской улице, 24, на 249 мест.</p>
+  </div>
+</section>
+
+<section id="plot">
+  <div class="wrap">
+    <h2>Где может стоять паркинг</h2>
+    <div class="split">
+      <figure class="map">
+        <div id="plotmap" role="region" aria-label="Интерактивная карта участка между Базовской улицей и проектируемым проездом № 8098">
+          <img src="assets/plot-map.png" alt="Схема участка между Базовской улицей и проектируемым проездом № 8098">
+        </div>
+        <figcaption>Карта © участники <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>. Синим отмечены корпуса ЖК «На Базовской», красным участок около 0,8 га. <a href="https://www.openstreetmap.org/?mlat=55.87513&amp;mlon=37.50673#map=17/55.87513/37.50673" target="_blank" rel="noopener">Открыть на openstreetmap.org</a></figcaption>
+      </figure>
+      <div class="text">
+        <p>Предлагаем рассмотреть участок между Базовской улицей и проектируемым проездом № 8098, около 0,8 га.</p>
+        <p>По предварительному расчёту там поместится около 400 машино-мест: от 382 до 437 в закрытом пятиуровневом гараже.</p>
+        <p style="font-size:15px">Можно ли там строить, решает город. Мы готовим запросы об этом в органы исполнительной власти Москвы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="act">
+  <div class="wrap">
+    <h2>Два действия, которые помогут</h2>
+    <div class="act">
+      <div class="card">
+        <div class="stepn">1</div>
+        <h3>Пройдите опрос до 25 ноября</h3>
+        <p>5 минут, анонимно. Ответы покажут, сколько соседям нужно мест и сколько они готовы платить. Они войдут в обращение жителей.</p>
+        <div class="qr">
+          <img src="assets/qr.svg" alt="QR-код на опрос">
+          <a class="btn red" href="https://forms.yandex.ru/u/6ae749b9902902dd98b405c6" target="_blank" rel="noopener">Открыть опрос</a>
+        </div>
+      </div>
+      <div class="card" id="appeal">
+        <div class="stepn">2</div>
+        <h3>Отправьте обращение в Дептранс от своего имени</h3>
+        <p>Каждое обращение регистрируют отдельно, и на каждое обязаны ответить по существу. Чем больше соседей напишет, тем весомее вопрос.</p>
+        <p style="margin-top:10px">Отправка через mos.ru занимает около 10 минут. Готовый текст и пошаговая инструкция ниже.</p>
+        <div class="row"><a class="btn ghost" href="#how">Как отправить</a></div>
+      </div>
+    </div>
+
+    <details id="how" style="margin-top:24px">
+      <summary>Как отправить обращение через mos.ru</summary>
+      <div>
+        <ol>
+          <li>Откройте <a href="https://www.mos.ru/feedback/reception/" target="_blank" rel="noopener">mos.ru/feedback/reception</a> и войдите в учётную запись mos.ru.</li>
+          <li>Нажмите «Приступить к отправке обращения».</li>
+          <li>В поиске получателя выберите «Департамент транспорта и развития дорожно-транспортной инфраструктуры города Москвы» и отметьте «Обратиться к должностному лицу»: появится руководитель Департамента М. С. Ликсутов.</li>
+          <li>Проверьте имя, телефон и почту в профиле: на почту придёт ответ.</li>
+          <li>Скопируйте тему и текст обращения ниже. Абзац про себя замените своими словами или удалите.</li>
+          <li>Отправьте обращение. Ответ должен прийти в течение 30 дней.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>Текст обращения для копирования</summary>
+      <div>
+        <p><b style="color:var(--text-primary)">Тема:</b> <span id="subj">О рассмотрении возможности устройства капитального паркинга для жителей ЖК «На Базовской»</span></p>
+        <div class="row"><button class="btn ghost sm" data-copy="subj">Скопировать тему</button><button class="btn ghost sm" data-copy="body">Скопировать текст</button><span class="copied" id="ok" hidden>Скопировано</span></div>
+        <div class="appeal" id="body">Уважаемый Максим Станиславович!
+
+Обращаюсь к Вам как житель жилого комплекса «На Базовской» (г. Москва, ул. Базовская, д. 15, к. 1–15, район Западное Дегунино Северного административного округа) по вопросу нехватки парковочных мест.
+
+Жителям стало известно, что во дворах комплекса могут ввести запрет остановки. Если это произойдёт, оставлять автомобили там, где жители ставят их сейчас, станет нельзя, а другого места взамен нам пока не предложили.
+
+Комплекс состоит из 12 многоквартирных корпусов высотой от 17 до 24 этажей, в них 2 537 квартир (по разрешениям на ввод корпусов в эксплуатацию). Капитального (многоуровневого или подземного) паркинга на территории нет, автомобили можно оставить только на наземных парковках. Этих мест не хватает, особенно вечером и ночью. Для сравнения: по нормам Москвы, которые с 5 августа 2026 года действуют для новых жилых домов, на такое число квартир полагалось бы не меньше 2 030 машино-мест.
+
+Из-за нехватки мест во дворах стало опаснее и неудобнее:
+
+- машины стоят на газонах, тротуарах и во внутридворовых проездах и мешают пешеходам, в том числе родителям с детскими колясками и пожилым людям;
+
+- хаотичная парковка перекрывает проезды и выезды, и скорая помощь, пожарная и коммунальная техника могут не проехать;
+
+- места для людей с инвалидностью регулярно занимают водители, у которых нет на это права.
+
+[По желанию: одно-два предложения о себе. Например, где вы теперь оставляете машину и сколько времени ищете место вечером. Если не нужно, удалите этот абзац.]
+
+Рядом, в жилом комплексе «Бусиновский парк» на Ижорской улице, застройщик ПИК строит многоуровневые паркинги, но машино-места в них продаются в собственность. По открытым данным на октябрь 2026 года место в многоуровневом паркинге стоит от 3,5 до 3,9 млн рублей, в подземном от 4,8 до 5,3 млн рублей. Большинству жителей такая покупка не по силам, а городского паркинга, где место можно арендовать, поблизости нет.
+
+Я знаю, что ГКУ «Администратор Московского парковочного пространства» (ГКУ «АМПП») паркинги не строит, а эксплуатирует их и управляет ими. Поэтому предлагаю рассмотреть создание рядом с жилым комплексом капитального паркинга, который после ввода в эксплуатацию перешёл бы под управление ГКУ «АМПП» и был бы доступен жителям по городским тарифам.
+
+В связи с изложенным, руководствуясь Федеральным законом от 02.05.2006 № 59-ФЗ «О порядке рассмотрения обращений граждан Российской Федерации», прошу:
+
+1. Сообщить позицию Департамента о возможности устройства капитального паркинга для жителей жилого комплекса «На Базовской» с последующей передачей его в управление ГКУ «АМПП».
+
+2. Сообщить, предусмотрено ли размещение такого паркинга в районе Западное Дегунино государственными программами города Москвы, Адресной инвестиционной программой или документацией по планировке территории и есть ли рядом с комплексом земельные участки, пригодные для него.
+
+3. Пока вопрос не решён, рассмотреть временные меры для жителей, которым уже сейчас не хватает места для автомобиля: дополнительные плоскостные парковочные места и усиленный контроль за местами для людей с инвалидностью.
+
+4. Сообщить, какие сведения и документы от жителей нужны для дальнейшего рассмотрения вопроса (например, расчёт обеспеченности машино-местами, результаты опроса жителей, коллективное обращение).
+
+5. Если часть вопросов не относится к компетенции Департамента, направить обращение по принадлежности согласно части 3 статьи 8 Федерального закона № 59-ФЗ и уведомить меня об этом.
+
+6. Направить письменный ответ в срок, установленный статьёй 12 Федерального закона № 59-ФЗ, на адрес электронной почты, указанный в обращении.
+
+Считаю этот вопрос важным для безопасности и удобства жителей комплекса «На Базовской» и всего района Западное Дегунино.</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Частые вопросы</h2>
+    <div style="max-width:880px; margin-top:32px">
+      <details><summary>Кто это делает?</summary><div><p>Мы инициативная группа из пяти студентов первого курса направления «Управление бизнесом». Один из нас живёт в ЖК «На Базовской», отсюда и тема проекта.</p><p style="margin-top:10px">Роли распределены так: координация и правовая часть, расчёты и данные, полевые наблюдения и фото, связь с жителями и опрос.</p><p style="margin-top:10px">Что уже сделали: собрали открытые данные о комплексе и нормах, посчитали квартиры и вместимость участка, обошли дворы, запустили опрос и отправили первое обращение в Дептранс.</p><p style="margin-top:10px">Мы не представляем застройщика, управляющую компанию или партию. Вопросы и предложения принимаем через координатора, контакты внизу страницы.</p></div></details>
+      <details><summary>Московский паркинг построит?</summary><div><p>Нет. ГКУ «АМПП» паркинги не строит, а управляет ими. Мы просим город рассмотреть строительство и передать готовый паркинг в управление Московскому паркингу, чтобы цена за место была приемлемой для жителей.</p></div></details>
+      <details><summary>Сколько будет стоить место?</summary><div><p>Тарифы устанавливает город. Сейчас мы спрашиваем в опросе, сколько соседи готовы платить, чтобы показать это Дептрансу.</p></div></details>
+      <details><summary>Зачем отправлять обращение от себя, если оно уже отправлено?</summary><div><p>Одно обращение показывает мнение одного жителя. Много обращений с одного адреса показывают, что проблема касается всего комплекса.</p></div></details>
+      <details><summary>Мои данные где-то опубликуют?</summary><div><p>Нет. Опрос анонимный. Обращение вы отправляете сами через mos.ru, его видит только Правительство Москвы.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <h2>Связаться с координатором</h2>
+    <p class="text">Есть вопрос, фото проблемного места или хотите помочь с обходом дворов? Напишите координатору проекта. Он живёт в ЖК «На Базовской» и сам отвечает на сообщения.</p>
+    <div class="contacts">
+      <a class="card contact" href="https://t.me/george_fomkin" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></div>
+        <div><b>Telegram</b><span>@george_fomkin</span></div>
+      </a>
+      <a class="card contact" href="https://vk.ru/georgy_fomkin" target="_blank" rel="noopener">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
+        <div><b>ВКонтакте</b><span>vk.ru/georgy_fomkin</span></div>
+      </a>
+      <a class="card contact" href="mailto:2606882@edu.fa.ru">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg></div>
+        <div><b>Почта</b><span>2606882@edu.fa.ru</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:var(--text-primary)">Инициативная группа жителей ЖК «На Базовской»</b><br>Москва, Базовская улица, 15, Западное Дегунино</div>
+    <div>Обновлено 5 ноября 2026 года</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = document.getElementById(b.dataset.copy).innerText.trim();
+      var ok = document.getElementById("ok");
+      var done = function () { ok.hidden = false; setTimeout(function () { ok.hidden = true; }, 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {});
+      else { var a = document.createElement("textarea"); a.value = t; document.body.appendChild(a); a.select(); try { document.execCommand("copy"); done(); } catch (e) {} a.remove(); }
+    });
+  });
+</script>
+<script src="assets/leaflet/leaflet.js"></script>
+<script src="assets/area.js"></script>
+<script>
+  (function () {
+    var box = document.getElementById("plotmap");
+    if (!window.L || !window.AREA || !box) return;
+    var plot = [[55.875065, 37.505527], [55.875686, 37.507565], [55.875465, 37.507881], [55.874569, 37.506657], [55.874799, 37.506378], [55.874636, 37.505967]];
+    box.innerHTML = "";
+    var map = L.map(box, { scrollWheelZoom: false, zoomSnap: 0.25, minZoom: 15, maxZoom: 19 });
+    map.fitBounds(L.latLngBounds(plot).pad(1.6));
+    map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+    map.attributionControl.addAttribution('© участники <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>');
+    var st = {
+      "green": { stroke: false, fillColor: "#dcebd2", fillOpacity: 1 },
+      "water": { stroke: false, fillColor: "#d6e6f2", fillOpacity: 1 },
+      "bld": { color: "#ffffff", weight: .6, fillColor: "#dcdcda", fillOpacity: 1 },
+      "zk": { color: "#ffffff", weight: .8, fillColor: "#1e5aa8", fillOpacity: .75 },
+      "road-major": { color: "#ffffff", weight: 9 },
+      "road-mid": { color: "#ffffff", weight: 7 },
+      "road-minor": { color: "#ffffff", weight: 5 },
+      "road-service": { color: "#ffffff", weight: 2.5 },
+      "road-path": { color: "#ffffff", weight: 1, dashArray: "2 3" },
+      "rail": { color: "#8a8a8a", weight: 2, dashArray: "6 4" }
+    };
+    var order = ["green", "water", "road-path", "road-service", "road-minor", "road-mid", "road-major", "rail", "bld", "zk"];
+    order.forEach(function (k) {
+      L.geoJSON(window.AREA, {
+        filter: function (f) { return f.properties.k === k; },
+        style: function () { return st[k]; },
+        interactive: k === "zk" || k.indexOf("road-") === 0 && k !== "road-path",
+        onEachFeature: function (f, layer) { if (f.properties.n) layer.bindTooltip(f.properties.n, { sticky: true }); }
+      }).addTo(map);
+    });
+    var area = L.polygon(plot, { color: "#be1e2d", weight: 3, fillColor: "#be1e2d", fillOpacity: .25 }).addTo(map);
+    area.bindPopup("<b>Участок под паркинг</b><br>около 0,8 га, ≈ 400 машино-мест");
+    L.tooltip({ permanent: true, direction: "center", className: "plot-label" }).setContent("Участок").setLatLng(area.getBounds().getCenter()).addTo(map);
+  })();
+</script>
+</body>
+</html>
