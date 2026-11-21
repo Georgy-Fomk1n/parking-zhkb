@@ -94,6 +94,9 @@
   .text { max-width: 760px; font-size: 17px; line-height: 1.7; color: var(--text-secondary); }
   .text p + p { margin-top: 14px; }
 
+  .clip { margin-top: 40px; max-width: 380px; }
+  .clip video { width: 100%; height: auto; display: block; border-radius: var(--radius-16); background: #000; box-shadow: var(--shadow-lg); }
+
   .grid { display: grid; gap: 24px; margin-top: 48px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 32px;
     box-shadow: var(--shadow-sm); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); transition: var(--ease); }
@@ -227,6 +230,12 @@
       <p>В жилом комплексе 12 корпусов от 17 до 24 этажей. Капитального паркинга, многоуровневого или подземного, на территории нет: машины ставят только на наземных местах во дворах и вдоль улиц. Их не хватает, особенно вечером и ночью.</p>
       <p>Поэтому машины стоят на газонах, тротуарах и во внутридворовых проездах. Пешеходам, родителям с колясками и пожилым людям трудно пройти, а скорая, пожарная и коммунальная техника может не проехать.</p>
     </div>
+    <figure class="clip">
+      <video controls playsinline preload="metadata" poster="assets/parking-video-poster.jpg" width="480" height="854">
+        <source src="assets/parking-video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео. <a href="assets/parking-video.mp4">Скачать файл</a>.
+      </video>
+    </figure>
     <h3 class="survey-h">Что говорят соседи</h3>
     <p class="survey-sub">Предварительные итоги опроса жителей на 19 ноября. Опрос идёт до 25 ноября, цифры ещё изменятся.</p>
     <div class="grid survey-grid">
